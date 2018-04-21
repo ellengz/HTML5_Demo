@@ -1,18 +1,12 @@
 var can1, can2;
 var ctx1, ctx2;
-var canWidth, canHeight;
-
 var bgImg = new Image();
 
-// execute function game when onload
-document.body.onload = game;
-
-function game() {
+window.onload = function() {
     console.log("onload");
     init();
-    gameloop();
+    // gameloop();
 }
-
 function init() {
     // get convas context
     can1 = document.getElementById('canvas1'); // upper level
@@ -21,8 +15,9 @@ function init() {
     ctx2 = can2.getContext('2d');
 
     bgImg.src = "./src/sea.jpg";
-    canWidth = can1.width;
-    canHeight = can1.height;
+    bgImg.onload = function() {
+        ctx2.drawImage(bgImg, 0, 0, can2.width, can2.height)
+    };
 }
 function gameloop() {
     // calculate internal for next frame according to performance
@@ -30,5 +25,4 @@ function gameloop() {
     // configuration needed for different browsers (check commonFunctions)
     // this one works for Chrome and Safari
     window.requestAnimationFrame(gameloop);
-    drawBackground();
 }
