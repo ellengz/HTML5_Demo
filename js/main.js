@@ -1,12 +1,13 @@
 var can1, can2;
 var ctx1, ctx2;
 var bgImg = new Image();
+var anemone;
 
 window.onload = function() {
     console.log("onload");
     init();
     // gameloop();
-}
+};
 function init() {
     // get convas context
     can1 = document.getElementById('canvas1'); // upper level
@@ -17,7 +18,11 @@ function init() {
     bgImg.src = "./src/sea.jpg";
     bgImg.onload = function() {
         ctx2.drawImage(bgImg, 0, 0, can2.width, can2.height)
+        anemone = new anemoneObj();
+        anemone.init();
+        anemone.draw();
     };
+
 }
 function gameloop() {
     // calculate internal for next frame according to performance
